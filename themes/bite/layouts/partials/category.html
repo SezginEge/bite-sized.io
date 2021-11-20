@@ -1,0 +1,23 @@
+<section class="container">
+  <div class="row">
+    <div class="column">
+      <fieldset>
+        <label for="filter">Filter Topic</label>
+        <input type="text" placeholder="" id="filter-topic" />
+      </fieldset>
+    </div>
+  </div>
+  {{ if ne (relURL .URL) ("/" | safeHTML) }}
+  <div class="row">
+    <div class="column">{{- partial "breadcrumb.html" . -}}</div>
+  </div>
+  {{ end }}
+
+  <section class="cards">
+    {{ range sort .Pages }}
+    <div class="card">
+      <a href="{{ .Permalink }}">{{ substr .Title 0 16 }}</a>
+    </div>
+    {{ end }}
+  </section>
+</section>

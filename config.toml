@@ -1,0 +1,4 @@
+baseURL = 'https://bite-sized.io/'
+languageCode = 'en-us'
+title = 'Bite-Sized'
+theme = "bite"

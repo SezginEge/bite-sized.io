@@ -11,13 +11,24 @@
   <div class="row">
     <div class="column">{{- partial "breadcrumb.html" . -}}</div>
   </div>
-  {{ end }}
-
+  {{ end }} {{if ge .Pages 1}}
   <section class="cards">
-    {{ range sort .Pages }}
+    {{ range sort .Pages }} {{ if not (in .Params.categories "nav") }}
+
     <div class="card">
       <a href="{{ .Permalink }}">{{ substr .Title 0 16 }}</a>
     </div>
-    {{ end }}
+    {{ end }} {{ end }}
   </section>
+
+  {{else}}
+  <div class="row">
+    <div class="column">
+      <p>
+        There is no content yet. Would you like to contribute? Checkout our
+        <a href="/contribute">contribution guideline</a>
+      </p>
+    </div>
+  </div>
+  {{end}}
 </section>

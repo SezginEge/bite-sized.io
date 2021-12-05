@@ -1,34 +1,66 @@
-<section class="container">
-  <div class="row">
-    <div class="column">
-      <fieldset>
-        <label for="filter">Filter Topic</label>
-        <input type="text" placeholder="" id="filter-topic" />
-      </fieldset>
-    </div>
+<section class="container grid">
+  <div class="col-auto">
+    <label class="block">
+      <span class="text-gray-700 font-bold">Filter Topic</span>
+      <input
+        id="filter-topic"
+        type="text"
+        class="
+          mt-1
+          block
+          w-full
+          rounded-md
+          border-gray-300
+          shadow-sm
+          focus:border-green-500
+          focus:ring
+          focus:ring-green-500
+          focus:ring-opacity-30
+        "
+        placeholder="Type minimum 3 character to filter topics"
+      />
+    </label>
   </div>
+
   {{ if ne (relURL .URL) ("/" | safeHTML) }}
-  <div class="row">
-    <div class="column">{{- partial "breadcrumb.html" . -}}</div>
-  </div>
+  <div class="col-auto">{{- partial "breadcrumb.html" . -}}</div>
   {{ end }} {{if ge .Pages 1}}
-  <section class="cards">
-    {{ range sort .Pages }} {{ if not (in .Params.categories "nav") }}
+  <div class="col-auto mt-2">
+    <section class="sm:flex sm:flex-wrap sm:block">
+      {{ range sort .Pages }} {{ if not (in .Params.categories "nav") }}
 
-    <div class="card">
-      <a href="{{ .Permalink }}">{{ substr .Title 0 16 }}</a>
-    </div>
-    {{ end }} {{ end }}
-  </section>
+      <div
+        data-topic="{{ .Title }}"
+        class="
+          py-4
+          px-8
+          m-2
+          font-medium
+          bg-white
+          text-gray-600
+          hover:bg-green-400 hover:text-gray-50
+          shadow-lg
+          rounded-lg
+          transition
+          duration-300
+          ease-in-out
+          transform
+          hover:-translate-y-1 hover:scale-110
+        "
+      >
+        <a href="{{ .Permalink }}">{{ substr .Title 0 16 }}</a>
+      </div>
 
-  {{else}}
-  <div class="row">
-    <div class="column">
+      {{ end }} {{ end }}
+    </section>
+
+    {{else}}
+    <div class="col-auto mt-4">
       <p>
         There is no content yet. Would you like to contribute? Checkout our
-        <a href="/contribute">contribution guideline</a>
+        <a href="/contribute" class="text-blue-800">contribution guideline</a>
       </p>
     </div>
+    {{end}}
   </div>
-  {{end}}
 </section>

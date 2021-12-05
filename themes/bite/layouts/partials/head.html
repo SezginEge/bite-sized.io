@@ -1,24 +1,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- <link rel="stylesheet" type="text/css" href="./css/miligram.css" /> -->
+  {{ $styles := resources.Get "css/styles.scss" | toCSS | postCSS (dict "config"
+  "./assets/css/postcss.config.js") }} {{ if .Site.IsServer }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" />
+  {{ else }} {{ $styles := $styles | minify | fingerprint |
+  resources.PostProcess }}
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
+    href="{{ $styles.Permalink }}"
+    integrity="{{ $styles.Data.Integrity }}"
   />
-
-  <!-- CSS Reset -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-  />
-
-  <!-- Milligram CSS -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
-  />
-  <link rel="stylesheet" href='{{ "css/style.css" | absLangURL }}' />
+  {{ end }}
 
   <title>{{ .Site.Title }}</title>
 </head>

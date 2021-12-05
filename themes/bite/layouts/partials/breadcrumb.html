@@ -1,4 +1,4 @@
-<div id="breadcrumbs">
+<div id="breadcrumbs" class="mt-4 mb-4">
 	<a href="/">🏠</a>
 	{{ .Scratch.Set "permalinkparts" (split .RelPermalink "/") }}
 	{{ range $index, $part := (.Scratch.Get "permalinkparts") }}
@@ -15,5 +15,5 @@
 					/ <a href="/{{ $.Scratch.Get "url" }}">{{ $part }}</a>
 			{{ end }}
 	{{ end }}
-	<hr/>
+	<hr class="mt-2"/>
 </div>

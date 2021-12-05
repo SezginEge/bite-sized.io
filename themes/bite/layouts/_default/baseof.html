@@ -2,9 +2,15 @@
 <html>
   {{- partial "head.html" . -}}
   <body>
-    <main class="wrapper">
-      {{- partial "navigation.html" . -}} {{- block "main" . }}{{- end }} {{-
-      partial "footer.html" . -}}
+    {{- partial "navigation.html" . -}}
+    <main class="container max-w-6xl mx-auto px-4 py-6">
+      {{- block "main" . }}{{- end }}
     </main>
+    <script
+      defer
+      language="javascript"
+      type="text/javascript"
+      src='{{ "js/navigation.js" | urlize | relURL }}'
+    ></script>
   </body>
 </html>
